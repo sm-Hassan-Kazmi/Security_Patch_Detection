@@ -16,7 +16,7 @@ def safe_mkdir(dirname):
         
 from data_collection.create_dataset import gh_cve_dir, repo_metadata_filename
 from dataset_utils import Aggregate, extract_dataset
-from helper import find_best_accuracy, find_best_f1, EnumAction, safe_mkdir
+from helper import find_best_accuracy, find_best_f1, EnumAction
 from helper import Repository
 from models import *
 from sklearn.metrics import roc_curve, auc, confusion_matrix

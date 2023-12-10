@@ -7,15 +7,19 @@ import tqdm
 import pandas as pd
 import random 
 import pickle 
-from .helper import safe_mkdir
+#from .helper import safe_mkdir
 from .data_collection.create_dataset import gh_cve_dir, repo_metadata_filename
-from .helper import find_best_accuracy, find_best_f1, EnumAction, safe_mkdir
+from .helper import find_best_accuracy, find_best_f1, EnumAction
 from .helper import Repository, add_metadata
 from . import helper, classes
 import sys
 sys.modules['helper'] = helper
 sys.modules['classes'] = classes
 
+def safe_mkdir(dirname):
+    with contextlib.suppress(FileExistsError):
+        os.mkdir(dirname)
+        
 DATASET_DIRNAME = "ready_data/"
 event_types = [
     'PullRequestEvent', 'PushEvent', 'ReleaseEvent', 'DeleteEvent', 'issues',
