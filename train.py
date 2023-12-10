@@ -10,7 +10,10 @@ from keras.callbacks import EarlyStopping
 from keras.callbacks import ModelCheckpoint
 from keras.optimizers import SGD, Adam
 
-
+def safe_mkdir(dirname):
+    with contextlib.suppress(FileExistsError):
+        os.mkdir(dirname)
+        
 from data_collection.create_dataset import gh_cve_dir, repo_metadata_filename
 from dataset_utils import Aggregate, extract_dataset
 from helper import find_best_accuracy, find_best_f1, EnumAction, safe_mkdir
@@ -18,7 +21,7 @@ from helper import Repository
 from models import *
 from sklearn.metrics import roc_curve, auc, confusion_matrix
 from sklearn.model_selection import KFold
-from helper import find_best_accuracy, find_best_f1, EnumAction, safe_mkdir
+from helper import find_best_accuracy, find_best_f1, EnumAction
 from helper import Repository
 from matplotlib import pyplot as plt
 from matplotlib import pyplot
